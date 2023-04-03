@@ -13,5 +13,5 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CategoryResponseDTO {
-    private Map<String, List<Product>> subCategoryResponse = new HashMap<>();
+    private Map<String, List<ProductResponseDTO>> subCategoryResponse = new HashMap<>();
 }

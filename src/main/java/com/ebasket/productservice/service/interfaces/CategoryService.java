@@ -7,12 +7,13 @@ import com.ebasket.productservice.dto.response.ResponseDTO;
 import com.ebasket.productservice.model.Category;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public interface CategoryService {
     Category addCategory(CategoryRequestDTO requestDTO);
     ResponseDTO deleteCategory(String category);
-    Category updateCategoryImage();
+    Category updateCategoryImage(String id,MultipartFile multipartFile);
     Category fetchCategoryById(String id);
     Category fetchCategoryByName(String name);
     CategoriesResponseDTO fetchAllCategories();

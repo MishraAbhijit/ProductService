@@ -18,6 +18,6 @@ public class Category {
     private String id;
     private String name;
     private String description;
-    private List<String> subCategories = new ArrayList<>();
+    private List<SubCategory> subCategories = new ArrayList<>();
     private String imageURL;
 }

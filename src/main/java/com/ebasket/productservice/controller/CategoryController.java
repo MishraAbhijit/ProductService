@@ -6,9 +6,11 @@ import com.ebasket.productservice.dto.response.CategoriesResponseDTO;
 import com.ebasket.productservice.dto.response.ResponseDTO;
 import com.ebasket.productservice.model.Category;
 import com.ebasket.productservice.service.interfaces.CategoryService;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/categories")
@@ -17,7 +19,7 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<Category> addCategory(@RequestBody CategoryRequestDTO requestDTO){
         Category category = categoryService.addCategory(requestDTO);
         return ResponseEntity.ok(category);
@@ -29,8 +31,11 @@ public class CategoryController {
         return ResponseEntity.ok(responseDTO);
     }
 
-    @PutMapping
-    public ResponseEntity<Category> updateCategoryImage(){return null;}
+    @PutMapping("/upload/image")
+    public ResponseEntity<Category> updateCategoryImage(@RequestParam String id,@RequestParam MultipartFile file){
+        Category category = categoryService.updateCategoryImage(id, file);
+        return ResponseEntity.ok(category);
+    }
 
     @GetMapping("/find")
     public ResponseEntity<Category> fetchCategoryById(@RequestParam String id){
@@ -56,7 +61,7 @@ public class CategoryController {
         return ResponseEntity.ok(responseDTO);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/subcategory")
     public ResponseEntity<ResponseDTO> deleteSubCategory(@RequestBody SubCategoryRequestDTO subCategoryRequestDTO){
         ResponseDTO responseDTO = categoryService.deleteSubCategory(subCategoryRequestDTO);
         return ResponseEntity.ok(responseDTO);
