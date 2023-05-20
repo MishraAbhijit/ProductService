@@ -13,6 +13,7 @@ import com.ebasket.productservice.service.interfaces.CategoryService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -76,6 +77,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Cacheable(value = "categoriesCache")
     public CategoriesResponseDTO fetchAllCategories() {
         List<Category> categoryList = categoryRepository.findAll();
         categoryList.forEach(

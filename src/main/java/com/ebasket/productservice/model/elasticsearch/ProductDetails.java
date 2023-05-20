@@ -17,7 +17,7 @@ public class ProductDetails {
     private String id;
     @Field(type = FieldType.Text, name = "productId")
     private String productId;
-    @Field(type = FieldType.Text, name = "productName")
+    @Field(type = FieldType.Search_As_You_Type, name = "productName")
     private String productName;
     @Field(type = FieldType.Text, name = "productDescription")
     private String productDescription;

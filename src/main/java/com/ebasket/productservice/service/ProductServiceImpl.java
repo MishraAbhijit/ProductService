@@ -13,6 +13,7 @@ import com.ebasket.productservice.service.interfaces.ProductDetailsService;
 import com.ebasket.productservice.service.interfaces.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
@@ -64,6 +65,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Cacheable
     public ProductsResponseDTO fetchAllProducts() {
         List<Product> productList = productRepository.findAll();
         return convertProductListToProductResponseDTO(productList);
